@@ -68,10 +68,7 @@ router.post('/signup', function (req, res, next) {
     var name = data.name;
     var email = data.email;
 
-    // Call the MailService.
-    MailService.sendSignupMail(email, user.name).then(function () {
-
-      // create access token and refresh token.
+     // create access token and refresh token.
       var userObj = {
         id: user._id,
       };
@@ -88,11 +85,7 @@ router.post('/signup', function (req, res, next) {
       };
 
       return res.status(200).json(tokenData);
-
-    }, function (error) {
-
-      return res.status(500).send('Server Error.');
-    });
+      
   }, function (error) {
 
     if (error.code === 400 && error.message) {
